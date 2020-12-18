@@ -24,8 +24,8 @@ export default class RsConfig {
 		return RsConfig._config;
 	}
 
-	public static get(path: string): any {
-		return _.get(RsConfig._config, path);
+	public static get(attributePath: string): any {
+		return _.get(RsConfig._config, attributePath);
 	}
 
 	private static _config: any;
