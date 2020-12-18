@@ -1,6 +1,6 @@
 {
 	"name": "rsjs-config",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "rsjs config",
 	"repository": "https://github.com/reactive-stack-js/rsjs-config.git",
 	"author": "Predrag Stojadinovic",
