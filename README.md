@@ -1,6 +1,4 @@
-<a href="http://prefko.com">
-  <img alt="prefko" src="https://avatars0.githubusercontent.com/u/46445292?s=200" width="100">
-</a>
+![reactive-stack-js](https://avatars0.githubusercontent.com/u/72337471?s=75)
 
 # rsjs-config
 [![build status](https://img.shields.io/travis/prefko/rsjs-config.svg?branch=master)](https://travis-ci.org/prefko/rsjs-config)
