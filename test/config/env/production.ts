@@ -1,0 +1,20 @@
+/** Production environment settings */
+module.exports = {
+
+	connections: {
+		jwt: {
+			something: 'production_yes'
+		},
+
+		ldap: {
+			user: 'production_ldap_user'
+		},
+	},
+
+	bla: {
+		boo: 'production_boo',
+		banana: {
+			fruit: 'production_yes'
+		}
+	}
+};

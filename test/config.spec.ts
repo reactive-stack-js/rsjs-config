@@ -1,19 +1,63 @@
-import {expect} from 'chai';
-import Config from '../src/config';
+#!/usr/bin/env node
+'use strict';
 
-describe("Config tests", () => {
-	it("Config should exist", () => {
-		expect(Config).to.exist;
+import * as path from 'path';
+import {expect} from 'chai';
+import RsConfig from '../src/config';
+
+const secret = {
+	file: path.join(__dirname, '.env.local'),
+	word: 'test'
+};
+
+const noSecret = {
+	bla: {
+		boo: 'boo',
+		banana: {fruit: 'yes'}
+	},
+	connections: {
+		jwt: {something: 'yes'},
+		ldap: {user: 'ldap_user'}
+	}
+};
+
+const withSecret = {
+	port: 3000,
+	bla: {
+		boo: 'secret_bla_boo',
+		banana: {fruit: 'yes', weight: 'secret_bla_banana_weight'}
+	},
+	connections: {
+		jwt: {something: 'yes', secret: 'secret_connections_jwt_secret'},
+		ldap: {user: 'ldap_user', password: 'secret_connections_ldap_password'}
+	}
+};
+
+describe("RsConfig tests - no environment", () => {
+	it("RsConfig should exist", () => {
+		expect(RsConfig).to.exist;
 	});
 
-	// describe("Config constructor tests", () => {
-	// 	const p1 = {username: "p1", rating: 1152, score: -238};
-	// 	const p2 = {username: "p2", rating: 1074, score: 112};
-	// 	const p3 = {username: "p3", rating: 986, score: 126};
-	// 	it("contructor should create object", () => {
-	// 		expect(() => new PrefRating(p1, p2, p3, 60)).to.not.throw();
-	// 		expect(new PrefRating(p1, p2, p3, 60)).to.be.a("object");
-	// 	});
-	// });
+	describe("no environment / no secret", () => {
+		it("config should deep equal to 'noSecret'", () => {
+			delete process.env.PORT;
+			delete process.env.NODE_ENV;
+			RsConfig.init(path.join(__dirname, 'config'));
+			expect(RsConfig.get('port')).to.not.exist;
+			expect(RsConfig.get('environment')).to.not.exist;
+			expect(RsConfig.config).to.deep.equal(noSecret);
+		});
+	});
+
+	describe("no environment / with secret", () => {
+		it("config should deep equal to 'withSecret'", () => {
+			delete process.env.PORT;
+			delete process.env.NODE_ENV;
+			RsConfig.init(path.join(__dirname, 'config'), secret);
+			expect(RsConfig.get('port')).to.equal(3000);
+			expect(RsConfig.get('environment')).to.not.exist;
+			expect(RsConfig.config).to.deep.equal(withSecret);
+		});
+	});
 
 });

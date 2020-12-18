@@ -11,7 +11,7 @@
 	"main": "./lib/config.js",
 	"types": "./lib/config.d.ts",
 	"scripts": {
-		"all": "yarn & yarn clean & yarn build & yarn test & yarn docs",
+		"all": "yarn & yarn clean & yarn format & yarn build & yarn test & yarn docs",
 		"build": "del /S /Q lib\\* && tsc",
 		"build:watch": "tsc --watch",
 		"lint": "tslint -p tsconfig.json",
@@ -26,7 +26,11 @@
 	},
 	"dependencies": {
 		"@types/lodash": "^4.14.165",
-		"lodash": "^4.17.20"
+		"@types/node": "^14.11.2",
+		"dotenv": "^8.2.0",
+		"lodash": "^4.17.20",
+		"ts-node": "^8.5.4",
+		"typescript": "^3.7.4"
 	},
 	"devDependencies": {
 		"@types/chai": "^4.2.7",
@@ -38,13 +42,11 @@
 		"prettier": "^1.19.1",
 		"sonarjs": "^1.0.0",
 		"source-map-support": "^0.5.16",
-		"ts-node": "^8.5.4",
 		"tslint": "^5.20.1",
 		"tslint-config-prettier": "^1.18.0",
 		"tslint-etc": "^1.10.0",
 		"tslint-no-unused-expression-chai": "^0.1.4",
-		"typedoc": "^0.15.6",
-		"typescript": "^3.7.4"
+		"typedoc": "^0.15.6"
 	},
 	"files": [
 		"lib/**/*"

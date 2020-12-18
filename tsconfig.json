@@ -1,15 +1,21 @@
 {
 	"compilerOptions": {
+		"baseUrl": ".",
+		"allowJs": true,
 		"target": "es6",
 		"module": "commonjs",
-		"noImplicitAny": true,
+		"moduleResolution": "node",
 		"removeComments": true,
 		"preserveConstEnums": true,
 		"sourceMap": true,
 		"declaration": true,
 		"rootDir": "./src",
 		"outDir": "./lib",
-		"strict": true
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"noImplicitAny": true,
+		"strict": true,
+		"strictNullChecks": false
 	},
 	"include": [
 		"src/**/*"
