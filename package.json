@@ -1,12 +1,12 @@
 {
 	"name": "rsjs-config",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "rsjs config",
 	"repository": "https://github.com/reactive-stack-js/rsjs-config.git",
 	"author": "Predrag Stojadinovic",
 	"license": "Unlicense",
 	"engines": {
-		"node": ">=8.9"
+		"node": ">=12.18"
 	},
 	"main": "./lib/config.js",
 	"types": "./lib/config.d.ts",
