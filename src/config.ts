@@ -44,30 +44,42 @@ export default class RsConfig {
 		RsConfig._config = _.merge(RsConfig._config, CONFIGS);
 		CONFIGS = null;
 
-		try {
-			const env = require(path.join(folder, 'env/' + process.env.NODE_ENV + '.ts'));
-			const keys = _.keys(env);
-			_.each(keys, (key) => {
-				if (_.has(RsConfig._config, key)) {
-					_.set(RsConfig._config, key, _.merge(_.get(RsConfig._config, key), _.get(env, key)));
-				}
-			});
-		} catch (err) {
-			console.log('WARNING: Unable to process the', process.env.NODE_ENV, 'environment config.');
+		if (process.env.NODE_ENV) {
+			const env = _getEnvContent(path.join(folder, 'env/'));
+			if (!_.isEmpty(env)) {
+				const keys = _.keys(env);
+				_.each(keys, (key) => {
+					if (_.has(RsConfig._config, key)) {
+						_.set(RsConfig._config, key, _.merge(_.get(RsConfig._config, key), _.get(env, key)));
+					}
+				});
+			}
 		}
 
 		if (secret) _overrideWithSecrets(RsConfig._config, secret.word);
 	}
 }
 
+const _getEnvContent = (envFolder: string) => {
+	const fileNames = fs.readdirSync(envFolder);
+	const files = _.filter(fileNames, (name) => !fs.lstatSync(path.join(envFolder, name)).isDirectory());
+	const envFile = _.find(files, function(file) {
+		const ext = path.extname(file);
+		const name = path.basename(file, ext);
+		return _.toLower(name) === process.env.NODE_ENV;
+	});
+	if (envFile) return require(path.join(envFolder, envFile));
+	return null;
+};
+
 const _processFolder = (folder: string) => {
 	const fileNames = fs.readdirSync(folder);
 	const files = _.filter(fileNames, (name) => !fs.lstatSync(path.join(folder, name)).isDirectory());
-	files.forEach((file) => {
+	_.each(files, (file) => {
 		const ext = path.extname(file);
-		if (ext !== '.ts') return;
+		if (ext !== '.ts' && ext !== '.js' && ext !== '.json') return;
 
-		var filename = path.basename(file, ext);
+		const filename = path.basename(file, ext);
 		const absoluteFilePath = path.join(folder, file);
 
 		const config = require(absoluteFilePath);

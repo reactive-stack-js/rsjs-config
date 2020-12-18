@@ -11,21 +11,20 @@ const secret = {
 };
 
 const noSecret = {
-	bla: {
-		boo: 'boo',
-		banana: {fruit: 'yes'}
-	},
-	connections: {
-		jwt: {something: 'yes'},
-		ldap: {user: 'ldap_user'}
-	}
+	bla: {boo: 'boo', banana: {fruit: true}},
+	blah: {booh: 'booh', melon: {fruit: true}},
+	connections: {jwt: {something: 'yes'}, ldap: {user: 'ldap_user'}}
 };
 
 const withSecret = {
 	port: 3000,
 	bla: {
 		boo: 'secret_bla_boo',
-		banana: {fruit: 'yes', weight: 'secret_bla_banana_weight'}
+		banana: {fruit: true, weight: 'secret_bla_banana_weight'}
+	},
+	blah: {
+		booh: 'booh',
+		melon: {fruit: true}
 	},
 	connections: {
 		jwt: {something: 'yes', secret: 'secret_connections_jwt_secret'},

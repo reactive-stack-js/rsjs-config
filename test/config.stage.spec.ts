@@ -13,6 +13,7 @@ const secret = {
 const stageNoSecret = {
 	environment: 'stage',
 	bla: {boo: 'stage_boo', banana: {fruit: 'stage_yes'}},
+	blah: {booh: 'booh', melon: {fruit: true}},
 	connections: {jwt: {something: 'stage_yes'}, ldap: {user: 'stage_ldap_user'}}
 };
 
@@ -22,6 +23,10 @@ const stageSecret = {
 	bla: {
 		boo: 'secret_bla_boo',
 		banana: {fruit: 'stage_yes', weight: 'secret_bla_banana_weight'}
+	},
+	blah: {
+		booh: 'booh',
+		melon: {fruit: true}
 	},
 	connections: {
 		jwt: {something: 'stage_yes', secret: 'secret_connections_jwt_secret'},

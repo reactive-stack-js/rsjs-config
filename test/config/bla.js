@@ -5,7 +5,7 @@ module.exports = {
 
 	boo: 'boo',
 	banana: {
-		fruit: 'yes'
+		fruit: true
 	}
 
 };

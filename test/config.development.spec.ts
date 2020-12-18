@@ -13,6 +13,7 @@ const secret = {
 const developmentNoSecret = {
 	environment: 'development',
 	bla: {boo: 'development_boo', banana: {fruit: 'development_yes'}},
+	blah: {booh: 'booh', melon: {fruit: true}},
 	connections: {jwt: {something: 'development_yes'}, ldap: {user: 'development_ldap_user'}}
 };
 
@@ -22,6 +23,10 @@ const developmentSecret = {
 	bla: {
 		boo: 'secret_bla_boo',
 		banana: {fruit: 'development_yes', weight: 'secret_bla_banana_weight'}
+	},
+	blah: {
+		booh: 'booh',
+		melon: {fruit: true}
 	},
 	connections: {
 		jwt: {something: 'development_yes', secret: 'secret_connections_jwt_secret'},
