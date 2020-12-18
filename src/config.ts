@@ -91,17 +91,17 @@ const _processSecret = (config: any, word: string, value: string, key: string): 
 	let trimmed = _.replace(key, word, '');
 	let parts = _.words(trimmed);
 
-	let path = _.toLower(trimmed);
+	let attributePath = _.toLower(trimmed);
 	let rev = _.reverse(_.range(parts.length));
 	_.each(rev, (i) => {
 		let checkPath = _.toLower(_.join(_.slice(parts, 0, i + 1), '.'));
 		let checkValue = _.get(config, checkPath);
 		if (_.isPlainObject(checkValue)) {
-			path = checkPath + '.' + _.toLower(_.join(_.slice(parts, i + 1), '_'));
+			attributePath = checkPath + '.' + _.toLower(_.join(_.slice(parts, i + 1), '_'));
 			return false;
 		}
 	});
-	return path;
+	return attributePath;
 };
 
 const _overrideWithSecrets = (config: any, word: string): void => {
@@ -109,8 +109,8 @@ const _overrideWithSecrets = (config: any, word: string): void => {
 	privates = _.filter(privates, (c) => _.startsWith(c, word));
 	let privateConfigs = _.pick(process.env, privates);
 	_.each(privateConfigs, (value, key) => {
-		let path = _processSecret(config, word, value, key);
-		_.set(config, path, value);
+		let attributePath = _processSecret(config, word, value, key);
+		_.set(config, attributePath, value);
 	});
 };
 
