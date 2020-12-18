@@ -1,0 +1,13 @@
+{
+	"name": "rsjs-config",
+	"version": "0.0.1",
+	"description": "rsjs config",
+	"main": "src/config.ts",
+	"repository": "https://github.com/reactive-stack-js/rsjs-config.git",
+	"author": "Predrag Stojadinovic <predrag@stojadinovic.net>",
+	"license": "Unlincense",
+	"dependencies": {
+		"@types/lodash": "^4.14.165",
+		"lodash": "^4.17.20"
+	}
+}
